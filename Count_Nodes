@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+struct node{
+  int data;
+  struct node* next;
+ };
+
+ /* Given a reference (pointer to pointer) to the head  
+of a list and an int, push a new node on the front  
+of the list. */
+
+ struct node* create(node** head,int val)
+ {
+     node* new_node=new node;
+     new_node->data=val;
+     new_node->next=*head;
+     *head=new_node;
+ }
+ int count_nodes(struct node* head)
+ { 
+     int c=0;
+     node* start=head;
+     while(start !=NULL)
+     {
+         cout<<"->"<<start->data;
+         start=start->next;
+         c++;
+         
+     }
+     cout<<endl;
+     return c;
+ }
+int main()
+{
+    struct node* head=NULL;
+    create(&head,1); //passed as refernce pointer
+    create(&head,2);
+    create(&head,4);
+    create(&head,3);
+   cout<<count_nodes(head);
+    return 0; 
+}
