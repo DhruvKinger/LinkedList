@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+#include <iostream>
+using namespace std;
+struct node{
+    int data;
+    node* next;
+    
+}*head;
+
+void new_node(int data,node* *head)
+{
+    node* new_n=new node;
+    new_n->data=data;
+    new_n->next=*head;
+    *head=new_n;
+}
+
+void Pair_swap(node *head)
+{
+    node* ptr=head;
+    while(ptr!=NULL && ptr->next!=NULL)
+    {
+        swap(ptr->data,ptr->next->data);
+        ptr=ptr->next->next;
+    }
+    
+}
+void print(node* ptr)
+{
+    cout<<"->";
+ while(ptr!=NULL)   
+ {
+     std::cout<< ptr->data<<"->";
+    ptr=ptr->next;
+     
+ }
+ cout<<"NULL";
+}
+
+int main()
+{ int n,x;
+   struct node* head=NULL;
+   cout<<"Enter number of nodes you want to create: ";
+   cin>>n;
+   cout<<"Enter elements: ";
+   for(int i=0;i<n;i++)
+   {
+       cin>>x;
+   new_node(x,&head);
+   
+      }
+   print(head);
+    Pair_swap(head);
+    cout<<"\nAfter Pairwise Swap:\n";
+   print(head);
+   return 0;
+}
