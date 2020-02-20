@@ -1,0 +1,98 @@
+
+#include <iostream>
+using namespace std;
+class node{
+   public:
+    int data;
+    node* next;
+};
+int getCount(node *head);
+int cal_point(int d,node *head1,node* head2);
+int calculate_intersectionnode(node *head1,node* head2)
+{
+    int c1=getCount(head1);
+    int c2=getCount(head2);
+    int d;
+    
+    if(c1>c2)
+    {
+        return cal_point(d,head1,head2);
+    }
+    else{
+       return cal_point(d,head2,head1);
+    }
+}
+//void print()
+int getCount(node *head)
+{
+    
+     int c=0;
+     node* start=head;
+     while(start !=NULL)
+     {
+        start=start->next;
+        cout<<start->data;
+         c++;
+    }
+     return c;
+}
+
+int cal_point(int d,node *head1,node* head2)
+{
+      node* current1 = head1; 
+      node* current2 = head2; 
+    for(int i=0;i<d;i++)
+    {
+        if(current1==NULL)
+        {
+            return -1;
+        }
+      current1=current1->next;    
+  
+    }
+    
+    while(current1!=NULL & current2!=NULL)
+    {
+        if(current2==current1)
+        {
+            return current1->data; 
+        }
+        current1=current1->next;
+        current2=current2->next;
+    }
+    return -1;
+}
+
+
+int main()
+{
+    node* x;
+   
+    node* head1=new node();
+    head1->data = 10; 
+   
+    node* head2=new node();
+     head2->data = 3; 
+     
+     x=new node();
+     x->data=6;
+     head1->next=x;
+     
+     x=new node();
+    x->data = 9; 
+    head2->next->next = x; 
+  
+    x=new node();
+    x->data = 15; 
+    head1->next = x; 
+    head2->next->next->next = x; 
+  
+   x=new node(); 
+    x->data = 30; 
+    head1->next->next = x; 
+  
+    head1->next->next->next = NULL; 
+    
+    calculate_intersectionnode(head1,head2);
+    return 0;
+}
