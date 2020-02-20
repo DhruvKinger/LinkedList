@@ -1,6 +1,6 @@
-
-#include <iostream>
+#include <bits/stdc++.h> 
 using namespace std;
+
 class node{
    public:
     int data;
@@ -15,23 +15,23 @@ int calculate_intersectionnode(node *head1,node* head2)
     int d;
     
     if(c1>c2)
-    {
+    { d=c1-c2;
         return cal_point(d,head1,head2);
     }
     else{
+        d=c2-c1;
        return cal_point(d,head2,head1);
     }
 }
 //void print()
 int getCount(node *head)
 {
-    
      int c=0;
      node* start=head;
      while(start !=NULL)
      {
         start=start->next;
-        cout<<start->data;
+        //cout<<start->data;
          c++;
     }
      return c;
@@ -76,7 +76,7 @@ int main()
      
      x=new node();
      x->data=6;
-     head1->next=x;
+     head2->next=x;
      
      x=new node();
     x->data = 9; 
@@ -93,6 +93,6 @@ int main()
   
     head1->next->next->next = NULL; 
     
-    calculate_intersectionnode(head1,head2);
+   cout<<"Intersection point of 2 linked_lists is: "<<calculate_intersectionnode(head1,head2);
     return 0;
 }
