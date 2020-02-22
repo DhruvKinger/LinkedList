@@ -1,0 +1,62 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+
+struct node{
+    int data;
+    node* next;
+    
+    node(int d)
+    {
+       data=d;
+       next=NULL;
+    }
+};
+
+struct Queue{
+    node *front,*rear;
+    Queue()
+    {
+        front=rear=NULL;
+    }    
+    void EnQueue(int d)
+    {
+        node* temp=new node(d);
+        if(rear=NULL)
+        {
+            front=rear=temp;   // If queue is empty, then new node is front and rear both 
+       
+            return;
+        }
+        rear->next=temp;
+        rear=temp;
+    }
+    
+    void DeQueue()
+    {
+        if(front==NULL) // If queue is empty, return NULL.
+        return;
+        
+        node* temp=front;
+        front=front->next;
+  
+       if(front==NULL) // If front becomes NULL, then change rear to NULL 
+    
+        {
+            rear=NULL;
+        }
+        delete(temp);
+    }
+     
+};
+
+int main()
+{ 
+Queue q;
+q.EnQueue(10);
+q.EnQueue(20);
+//q.DeQueue();
+q.EnQueue(15);
+ //cout << "Queue Front : " << q.front->data << endl; 
+   // cout << "Queue Rear : " << q.rear->data; 
+    return 0;
+}
