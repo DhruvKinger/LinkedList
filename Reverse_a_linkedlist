@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+struct node{
+    int data;
+    node* next;
+    
+}*head;
+
+void new_node(int data,node* *head)
+{
+    node* new_n=new node;
+    new_n->data=data;
+    new_n->next=*head;
+    *head=new_n;
+}
+
+void print(node* ptr)
+{
+    cout<<"->";
+ while(ptr!=NULL)   
+ {
+     std::cout<< ptr->data<<"->";
+    ptr=ptr->next;
+     
+ }
+ 
+}
+
+void reverse(struct node** head)
+{
+    node* prev=NULL;
+    node *curr=*head;
+    node* next=NULL;
+    
+    while(curr!=NULL)
+    {
+        next=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=next;
+        
+    }
+    *head=prev;
+}
+
+int main()
+{ int n,x;
+   struct node* head=NULL;
+   cout<<"Enter number of nodes you want to create: ";
+   cin>>n;
+   cout<<"Enter elements: ";
+   for(int i=0;i<n;i++)
+   {
+       cin>>x;
+   new_node(x,&head);
+   
+      }
+      cout<<"LinkedList is :\n";
+   print(head);
+   reverse(&head);
+      cout<<"\nLinkedList after reversing is :\n";
+   
+   print(head);
+    return 0;
+}
