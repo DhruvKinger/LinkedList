@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct node{
+  int data;
+  struct node* next;
+ };
+ 
+  struct node* push(node** head,int val)
+ {
+     node* new_node=new node;
+     new_node->data=val;
+     new_node->next=*head;
+     *head=new_node;
+ }
+ 
+ void rotate(node* *head,int n)
+ {
+   if(n==0)
+   {
+       return;
+   }
+    node* start=*head;
+    int c=1;
+    while(c<n && start!=NULL)
+    {
+        start=start->next;
+         c++;
+      
+    }
+    if(start==NULL)
+    return;
+    
+    node* x=start;
+    
+    while(start->next!=NULL)
+    {
+        start=start->next;
+    }
+    start->next=*head; // Change next of last node to previous head  
+    *head=x->next;   // Change head to (k+1)th node  
+      x->next=NULL; // change next of kth node to NULL
+    
+ }
+
+ void printList(node* head) 
+{ 
+    while (head != NULL) { 
+        cout <<"->"<< head->data; 
+        head = head->next; 
+    } 
+    cout <<endl;
+}
+ int main() 
+{ 
+    struct node* head = NULL; 
+   for (int i = 60; i > 0; i -= 10)  
+        push(&head, i); 
+    cout<<"Initial Linkedlist:\n";
+    printList(head);
+    int n;
+    cout<<"Enter no of rotations u want to do: ";
+    cin>>n;
+    rotate(&head,n);
+    cout<<"\nAfter Rotation:\n";
+    printList(head);
+    return 0;
+}
