@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct node{
+  int data;
+  struct node* next;
+ };
+ 
+  struct node* push(node** head,int val)
+ {
+     node* new_node=new node;
+     new_node->data=val;
+     new_node->next=*head;
+     *head=new_node;
+ }
+ 
+ int detectloop(struct node* head)
+ {
+    node* first=head;
+    node *second=head;
+    while(first!=NULL && second!=NULL &&second->next!=NULL)
+    {
+        first=first->next;
+        second=second->next->next;
+        if(first==second)
+        {
+            return 1;
+        }
+    }
+    
+    return 0;
+ }
+ 
+ bool usinghashmap(node* head)
+ {
+     unordered_set<node*> s;
+     
+     while(head!=NULL)
+     {
+         if(s.find(head)!=s.end())
+         {
+             return true;
+         }
+         else
+         {
+            s.insert(head);
+         }
+         head=head->next;
+         
+         
+         
+     }
+     return false;
+     
+ }
+ int main() 
+{ 
+    /* Start with the empty list */
+    struct node* head = NULL; 
+    push(&head, 20); 
+    push(&head, 4); 
+    push(&head, 15); 
+    push(&head, 10); 
+    head->next->next->next->next = head;
+    detectloop(head)?cout<<"Found there is a loop ":cout<<"No loop present";
+    usinghashmap(head)?cout<<"\nFound there is a loop ":cout<<"\nNo loop present";
+    return 0;
+}
