@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct node{
+  int data;
+  struct node* next;
+ };
+ 
+  struct node* push(node** head,int val)
+ {
+     node* new_node=new node;
+     new_node->data=val;
+     new_node->next=*head;
+     *head=new_node;
+ }
+
+ void printList(node* head) 
+{ 
+    while (head != NULL) { 
+        cout <<"->"<< head->data; 
+        head = head->next; 
+    } 
+    cout <<endl;
+}
+ void detect_removeloop(struct node* head)
+ {
+     map<node*,int> mp;
+     node* last=NULL;
+     while(head!=NULL)
+     {
+         if(mp.find(head)==mp.end())
+      {
+        mp[head]++; // if node not present in the map, insert it in the map 
+        last=head;
+        head=head->next;
+        
+      }
+    
+      else
+     {
+        last->next=NULL;// if present, it is a cycle, make the last node's next pointer NULL 
+          break;
+     }
+    
+    }
+    
+ }
+ int main() 
+{ 
+    struct node* head = NULL; 
+    push(&head, 20); 
+    push(&head, 4); 
+    push(&head, 15); 
+    push(&head, 10); 
+    head->next->next->next->next = head;
+    detect_removeloop(head);
+    printList(head);
+    return 0;
+}
