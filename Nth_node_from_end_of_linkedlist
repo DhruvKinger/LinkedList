@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+struct node{
+  int data;
+  struct node* next;
+ };
+ 
+  struct node* create(node** head,int val)
+ {
+     node* new_node=new node;
+     new_node->data=val;
+     new_node->next=*head;
+     *head=new_node;
+ }
+ 
+void print(struct node* head)
+ { 
+    
+     node* start=head;
+     while(start !=NULL)
+     {
+         cout<<"->"<<start->data;
+         start=start->next;
+         
+     }
+  }
+ 
+ void calc(struct node *head,int n)
+ {
+     int count=0,i;
+     struct node* temp=head;
+     while(temp!=NULL)
+     {
+         count++;
+         temp=temp->next;
+     }
+     
+     if(count<n) 
+    {  
+        return;
+      }
+     
+     temp=head;
+     for(i=1;i<count-n+1;i++)
+     {
+         temp=temp->next;
+     }
+     cout<<temp->data;
+     
+     return;
+ }
+ int main()
+{
+    struct node* head=NULL;
+    for(int i=100;i>=10;i=i-10)
+    {
+        create(&head,i); 
+    }
+    int n;
+    cout<<"Enter node from end you want to find: ";
+    cin>>n;
+    
+    cout<<"Complete linkedlist is: \n";
+    print(head);
+    cout<<"\nNth node is: ";
+    calc(head,n);
+   
+    return 0; 
+}
