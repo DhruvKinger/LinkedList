@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct node{
+    char data;
+    node* next;
+    
+}*head;
+
+void new_node(node **head,int data)
+{
+    node* new_n=new node;
+    new_n->data=data;
+     new_n->next=*head;
+    *head=new_n;
+}
+void printList(struct node* ptr) 
+{ 
+    while (ptr != NULL) { 
+       cout<<"->"<<ptr->data; 
+        ptr = ptr->next; 
+    } 
+    cout<<"->NULL"; 
+} 
+
+bool Ispalindrome(node* root)
+{
+    node* start=root;
+    stack <char> s;
+    while(start!=NULL)
+    {
+        s.push(start->data);
+        start=start->next;
+        
+    }
+    
+    while(root!=NULL)
+    {
+        int x=s.top();
+        s.pop();
+        if(x!=root->data)
+        {
+            return false;
+        }
+        root=root->next;
+    }
+    return true;
+}
+
+int main()
+{
+    node* root=NULL;
+    string str="abacaba";
+    for(int i=0;i<str.length();i++)
+    {
+        new_node(&root,str[i]);
+    }
+   cout<<"Linkedlist of characters:\n";
+    printList(root);
+    cout<<endl;
+    Ispalindrome(root)?cout<<"Yes":cout<<"No";
+    return 0;
+
+
+}
+
