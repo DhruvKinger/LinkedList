@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+struct node{
+  int data;
+  struct node* next;
+ };
+
+ struct node* create(node** head,int val)
+ {
+     node* new_node=new node;
+     new_node->data=val;
+     new_node->next=*head;
+     *head=new_node;
+ }
+/* int count_nodes(struct node* head)
+ { 
+     int c=0;
+     node* start=head;
+     while(start !=NULL)
+     {
+         cout<<"->"<<start->data;
+         start=start->next;
+         c++;
+         
+     }
+     cout<<endl;
+     return c;
+ }
+ */
+ void printList(node* head)
+ {
+     while(head!=NULL)
+     {
+         cout<<"->"<<head->data;
+         head=head->next;
+     }
+ }
+void deleteNodeWithoutHead(node *del)
+{
+    node * temp=del;
+    node* x=del;
+    if(del==NULL)
+    return;
+    if(temp->next==NULL)
+    {
+       cout<<"\nNot possible it is the last node ";
+    }
+    while(temp->next!=NULL)
+    {
+        temp->data=temp->next->data;  //copying data of next to prev
+        temp=temp->next; // incrementing next
+        if(temp->next!=NULL)
+         x=x->next; // main logic
+    }
+    x->next=NULL; 
+    
+}
+ 
+int main()
+{
+    struct node* head=NULL;
+     create(&head,4);
+    create(&head,3);
+     create(&head,2);
+    create(&head,1);
+   printList(head);
+   
+   node* del = head->next; 
+    deleteNodeWithoutHead(del); 
+   cout<<endl;
+   printList(head);
+    return 0; 
+}
+
