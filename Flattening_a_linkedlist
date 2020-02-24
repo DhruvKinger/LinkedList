@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+struct node{
+    int data;
+    node* right;
+    node* down;
+    
+}*head;
+
+void new_node(node **head,int data)
+{
+    node* new_n=new node;
+    new_n->data=data;
+    new_n->right=NULL;
+    new_n->down=*head;
+    *head=new_n;
+}
+
+void print(node* ptr)
+{
+    
+ while(ptr!=NULL)   
+ {
+     std::cout<<"->"<<ptr->data;
+    ptr=ptr->down;
+     
+ }
+ 
+}
+
+node* merge(node* x,node* y)
+{
+    if(!x)
+    return y;
+    if(!y)
+    return x;
+    
+    node* res=new node();
+    if(x->data<y->data)
+    {
+        res=x;
+        res->down=merge(x->down,y);
+    }
+    
+    else
+    {
+        res=y;
+        res->down=merge(x,y->down);
+    
+    }
+
+    return res;
+}
+node* flatten(node* root)
+{
+    if(root==NULL || root->right==NULL)
+    {
+        return root;
+    }
+    
+    return merge(root,flatten(root->right));
+}
+int main()
+{
+    node* root=NULL;
+    new_node(&root,30);    new_node(&root,8);    new_node(&root,7);    new_node(&root,5);
+    
+    new_node(&(root->right),20); new_node(&(root->right),10);
+
+    new_node(&(root->right->right),50);new_node(&(root->right->right),22);new_node(&(root->right->right),19);
+
+new_node(&(root->right->right->right),45);new_node(&(root->right->right->right),40);
+new_node(&(root->right->right->right),35); new_node(&(root->right->right->right),20);
+
+root=flatten(root);
+print(root);
+return 0;
+
+
+}
+
