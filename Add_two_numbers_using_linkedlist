@@ -1,0 +1,101 @@
+#include <iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node* next;
+   
+    
+}*head;
+
+Node *newNode(int data)  
+{  
+    Node *new_node = new Node(); 
+    new_node->data = data;  
+    new_node->next = NULL;  
+    return new_node;  
+}
+
+void push(Node **head,int data)
+{
+    Node* new_n=newNode(data);
+    new_n->next=*head;
+    *head=new_n;
+}
+
+void print(Node* ptr)
+{
+    
+ while(ptr!=NULL)   
+ {
+     std::cout<<"->"<<ptr->data;
+    ptr=ptr->next;
+     
+ }
+ 
+}
+
+Node * add(Node* first,Node* second)
+{
+    Node* res = NULL;  
+    Node* temp=NULL,*prev=NULL;
+    int sum,carry=0;
+    
+    while(first!=NULL || second!=NULL)
+    {
+        sum=carry+(first?first->data:0)+(second?second->data:0);
+        carry=sum/10;
+        sum=sum%10;
+        temp=newNode(sum);
+        
+        if(res==NULL)
+        {
+            res=temp;  // if this is the first node then set it as head of the resultant list  
+        
+        }
+        
+        else
+        {
+            prev->next=temp; // If this is not the first node then connect it to the rest.  
+       
+        }
+        prev=temp;
+        if(first)
+        first=first->next;
+        if(second)
+        second=second->next;
+    }
+    if(carry>0)
+    {
+        temp->next=newNode(carry);
+    }
+    return res;
+}
+
+int main()  
+{  
+    Node* res = NULL;  
+    Node* first = NULL;  
+    Node* second = NULL;  
+  
+  
+    push(&first, 6);  
+    push(&first, 4);  
+    push(&first, 9);  
+    push(&first, 5);  
+    push(&first, 7);  
+    printf("First List is ");  
+    print(first);  
+  
+ 
+    push(&second, 4);  
+    push(&second, 8);  
+    cout<<"\nSecond List is ";  
+    print(second);  
+  
+    
+    res = add(first, second);  
+    cout<<"\nResultant list is ";  
+    print(res);  
+  
+return 0;  
+} 
