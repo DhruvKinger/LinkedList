@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct Node{
+    int data;
+    Node* next;
+ }*head;
+
+Node *newNode(int data)  
+{  
+    Node *new_node = new Node(); 
+    new_node->data = data;  
+    new_node->next = NULL;  
+    return new_node;  
+}
+
+void push(Node **head,int data)
+{
+    Node* new_n=newNode(data);
+    new_n->next=*head;
+    *head=new_n;
+}
+
+void print(Node* ptr)
+{
+    
+ while(ptr!=NULL)   
+ {
+    std::cout<<"->"<<ptr->data;
+    ptr=ptr->next;
+     
+ }
+ 
+}
+  void sorted(Node* head)
+     {
+         Node *x;
+         Node *ptr;
+         ptr=head;
+         while(ptr!=NULL)
+         { 
+             x=ptr->next;
+             
+             while(x!=NULL)
+             {
+                if(ptr->data > x->data)
+                {
+                 
+                 swap(ptr->data,x->data);
+               
+                }
+              x=x->next;
+             }
+          
+         ptr=ptr->next;
+         }
+      
+     }
+     
+int main()  
+{  
+   
+    Node* first = NULL;  
+    push(&first, 1);  
+    push(&first, 0);  
+    push(&first, 2);  
+    push(&first, 1);  
+    push(&first, 0);   print(first);   cout<<endl;
+    sorted(first);
+    printf("\nSorted List is ");  
+    print(first);  
+  
+ 
+return 0;  
+} 
