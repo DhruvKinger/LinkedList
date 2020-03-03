@@ -21,7 +21,7 @@ struct Queue{
     void EnQueue(int d)
     {
         node* temp=new node(d);
-        if(rear=NULL)
+        if(rear==NULL)
         {
             front=rear=temp;   // If queue is empty, then new node is front and rear both 
        
@@ -54,9 +54,9 @@ int main()
 Queue q;
 q.EnQueue(10);
 q.EnQueue(20);
-//q.DeQueue();
+q.DeQueue();
 q.EnQueue(15);
- //cout << "Queue Front : " << q.front->data << endl; 
-   // cout << "Queue Rear : " << q.rear->data; 
+ cout << "Queue Front : " << q.front->data << endl; 
+  cout << "Queue Rear : " << q.rear->data; 
     return 0;
 }
