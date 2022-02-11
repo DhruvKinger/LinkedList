@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct node{
+    int data;
+    struct node* next;
+};
+struct node* head=NULL;
+
+void create(int d)
+{
+
+struct node* x=new node();
+x->data=d;
+x->next=head;
+head=x;
+    
+}
+
+
+void display()
+{
+
+struct node* temp;
+temp=head;
+while(temp!=NULL)
+{
+    std::cout << temp->data <<" ";    
+    temp=temp->next;
+}
+
+}
+
+
+int main()
+{
+    create(1);
+    create(2);
+    create(3);
+    cout<<"Linked List is: ";
+    display();
+    return 0;
+}
