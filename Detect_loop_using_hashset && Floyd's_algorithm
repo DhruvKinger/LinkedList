@@ -30,6 +30,22 @@ struct node{
     return 0;
  }
  
+ int checkloopexist()
+{
+   while(head!=NULL)
+   {
+       if(head->flag==1)
+       {
+           return 1; // simpler flag to see if it is traversed or not 
+       }
+       
+       head->flag=1;
+       head=head->next;
+   }
+   return 0;
+}
+ 
+ 
  bool usinghashmap(node* head)
  {
      unordered_set<node*> s;
