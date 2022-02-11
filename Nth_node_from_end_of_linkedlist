@@ -24,6 +24,32 @@ void print(struct node* head)
          
      }
   }
+  
+  void calcualte_nth_node_from_end(int n)
+{
+    int c=0;
+    node* start=head ;
+    while(start!=NULL)
+    {
+        c++;
+        start=start->next;
+    }
+    if(c<n)
+    {
+        return;
+    }
+ 
+ node* temp=head;
+ for(int j=1;j<c-n;j++)
+ {
+  temp=temp->next;   
+ }
+ cout<<temp->next->data;
+ return;
+
+    
+}
+
  
  void calc(struct node *head,int n)
  {
