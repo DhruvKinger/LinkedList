@@ -1,0 +1,87 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+struct node{
+    int data;
+    struct node* next;
+};
+struct node* head=NULL;
+
+void push(int d)
+{
+    node* x=new node;
+    x->data=d;
+    x->next=head;
+    head=x;
+}
+
+node* newnode(int d)
+{
+    node* x=new node;x->data=d;
+    x->next=NULL;
+    return x;
+}
+
+void print(node* head)
+{
+    node* start=head;
+    while(start!=NULL)
+    {
+     std::cout << start->data << " ";
+     start=start->next;   
+    }
+}
+
+void insertinmiddle(node** head,int d)
+{
+    node * first=*head;
+    node * second=(*head)->next; // both head & head->next can work 
+    node* y=newnode(d);
+    if(head!=NULL)
+    {
+        while(second !=NULL && second->next!=NULL)
+        {
+            first=first->next;
+            second=second->next->next;
+        }
+     
+        y->next=first->next;
+        first->next=y;
+        cout<<first->data;
+    }
+}
+
+int main()
+{
+     node* x;
+   
+    node* head=new node();
+     head->data = 3; 
+     
+     x=new node();
+     x->data=6;
+     head->next=x;
+     
+     x=new node();
+    x->data = 9; 
+    head->next->next = x; 
+  
+    x=new node();
+    x->data = 15; 
+    head->next->next->next = x; 
+    
+    
+   /* x=new node();
+    x->data = 18; 
+    head->next->next->next->next = x; */
+  
+   
+    print(head);
+    cout<<"\nMiddle Element is:-"; insertinmiddle(&head,77);
+    cout<<endl;
+    print(head);
+    
+
+    return 0;
+}
